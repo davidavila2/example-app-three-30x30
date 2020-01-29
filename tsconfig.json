@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@dashboard/material": ["libs/material/src/index.ts"],
+      "@dashboard/core-data": ["libs/core-data/src/index.ts"],
+      "@dashboard/ui-login": ["libs/ui-login/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -16,7 +16,7 @@ import  {
   MatTableModule,
   MatToolbarModule,
   MatButtonToggleModule
-}  from  '@angular/material';
+} from '@angular/material';
 
 @NgModule({
   imports: [

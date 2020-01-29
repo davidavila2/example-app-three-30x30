@@ -1,3 +1,19 @@
-<p>
-  projects works!
-</p>
+<div class="container">
+  <!-- Projects List -->
+  <div class="col-50">
+    <dashboard-projects-list 
+    [projects]="projects$ | async"
+    (selected)=selectProject($event)
+    (deleted)="deleteProject($event)"
+    >
+    </dashboard-projects-list>
+  </div>
+  <!-- Project Details-->
+  <div class="col-50">
+    <dashboard-projects-details 
+    [project]="selectedProject"
+    (saved)="saveProject($event)"
+    (cancelled)="cancel()">
+  </dashboard-projects-details>
+  </div>
+</div>

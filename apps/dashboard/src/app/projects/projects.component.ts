@@ -28,31 +28,30 @@ export class ProjectsComponent implements OnInit {
   selectProject(project: Projects) {
     this.selectedProject = project;
     this.form.patchValue(project);
-    console.log(project);
   }
 
   getProjects() {
     this.projects$ = this.projectsService.all();
   }
 
-  saveProject(project) {
-    if (!project.id) {
-      this.createProject(project);
+  saveProject() {
+    if (!this.form.value.id) {
+      this.createProject();
     } else {
-      this.updateProject(project);
+      this.updateProject();
     }
   }
 
-  updateProject(project) {
-    this.projectsService.update(project)
+  updateProject() {
+    this.projectsService.update(this.form.value)
       .subscribe(() => {
         this.getProjects();
         this.resetProject();
       });
   }
 
-  createProject(project) {
-    this.projectsService.create(project)
+  createProject() {
+    this.projectsService.create(this.form.value)
       .subscribe(() => {
         this.getProjects();
         this.resetProject();

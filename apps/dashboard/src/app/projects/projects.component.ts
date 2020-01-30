@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Projects, ProjectsService } from '@dashboard/core-data';
+import { Projects, ProjectsService, emptyProject } from '@dashboard/core-data';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'dashboard-projects',
@@ -9,25 +10,25 @@ import { Projects, ProjectsService } from '@dashboard/core-data';
 export class ProjectsComponent implements OnInit {
   projects$;
   selectedProject: Projects;
+  form: FormGroup;
 
-  constructor(private projectsService: ProjectsService) { }
-  
+  constructor(private projectsService: ProjectsService, private formBuilder: FormBuilder) { }
+
   resetProject() {
-    const emptyProject: Projects = {
-      id: null,
-      title: '',
-      details: ''
-    }
+    this.form.reset();
     this.selectProject(emptyProject);
   }
 
   ngOnInit() {
     this.getProjects();
+    this.initForm();
     this.resetProject();
   }
 
-  selectProject(project) {
+  selectProject(project: Projects) {
     this.selectedProject = project;
+    this.form.patchValue(project);
+    console.log(project);
   }
 
   getProjects() {
@@ -44,7 +45,7 @@ export class ProjectsComponent implements OnInit {
 
   updateProject(project) {
     this.projectsService.update(project)
-      .subscribe(result => {
+      .subscribe(() => {
         this.getProjects();
         this.resetProject();
       });
@@ -52,7 +53,7 @@ export class ProjectsComponent implements OnInit {
 
   createProject(project) {
     this.projectsService.create(project)
-      .subscribe(result => {
+      .subscribe(() => {
         this.getProjects();
         this.resetProject();
       });
@@ -60,11 +61,19 @@ export class ProjectsComponent implements OnInit {
 
   deleteProject(project) {
     this.projectsService.delete(project.id)
-      .subscribe(result => this.getProjects());
+      .subscribe(() => this.getProjects());
   }
 
   cancel() {
     this.resetProject();
+  }
+
+  private initForm() {
+    this.form = this.formBuilder.group({
+      id: null,
+      title: [''],
+      details: ['']
+    });
   }
 
 }

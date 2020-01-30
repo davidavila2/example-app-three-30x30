@@ -11,6 +11,7 @@
   <!-- Project Details-->
   <div class="col-50">
     <dashboard-projects-details 
+    [form]="form"
     [project]="selectedProject"
     (saved)="saveProject($event)"
     (cancelled)="cancel()">

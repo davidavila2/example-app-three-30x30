@@ -12,6 +12,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { ProjectsDetailsComponent } from './projects/projects-details/projects-details.component';
 import { RoutingModule } from './routing.module';
+import { WildCardComponent } from './wild-card/wild-card.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { RoutingModule } from './routing.module';
     AppComponent,
     ProjectsComponent,
     ProjectsListComponent,
-    ProjectsDetailsComponent
+    ProjectsDetailsComponent,
+    WildCardComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Projects } from '@dashboard/core-data';
+import { Form } from '@angular/forms';
 
 @Component({
   selector: 'dashboard-projects-details',
@@ -13,6 +14,7 @@ export class ProjectsDetailsComponent {
     if (value) this.originalTitle = value.title;
     this.currentProject = Object.assign({}, value)
   }
+  @Input() form: Form;
 
   @Output() saved = new EventEmitter();
   @Output() cancelled = new EventEmitter();
